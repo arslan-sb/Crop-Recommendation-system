@@ -4,8 +4,7 @@ import numpy as np
 import os
 import pickle
 import warnings
-from openai import OpenAI
-client = OpenAI()
+
 import requests
 
 
@@ -138,7 +137,7 @@ def main():
                     "prompt": f"{pre_prompt} {prompt_input} Assistant: ",  # Prompts
                     "temperature": 0.1,
                     "top_p": 0.9,
-                    "max_length": 500,
+                    "max_length": 350,
                     "repetition_penalty": 1
                 }  # Model parameters
             )
