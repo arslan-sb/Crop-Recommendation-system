@@ -10,10 +10,6 @@ import requests
 
 import os
 
-# Set the REPLICATE_API_TOKEN
-os.environ["REPLICATE_API_TOKEN"] = "r8_IA8Gmzy6XKfWVbAiTSPQdgd1Z2Z8JaU4KeWtH"
-
-import replicate
 
 
 
@@ -116,7 +112,7 @@ def main():
                 prediction = loaded_model.predict(single_pred)
                 print(prediction)
             # Use the swapped dictionary to get the crop name
-            recommended_crop = crop_dict.get(prediction[0], 'Unknown Crop')
+            recommended_crop = crop_dict.get(prediction[0], 'NO CROP')
     
             col.write('''
             ## Results 🔍 
@@ -124,31 +120,7 @@ def main():
     
             col.success(f"{'Recommended ' + recommended_crop if prediction[0] else 'Not recommended'} by the A.I for your farm.")
 
-             # Call ChatGPT API for response
             
-            # Prompts
-            pre_prompt = "You are Ai smart crop recommendation system Assistant, skilled in explaining why our Ai model is suggesting following crop for your land. You only respond once as  'Assistant'"
-            prompt_input = "Explan why "+ recommended_crop +" is best for you land as suggested by "+ options[sel_model-1]
-
-            # Generate LLM response
-            output = replicate.run(
-                'a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5',  # LLM model
-                input={
-                    "prompt": f"{pre_prompt} {prompt_input} Assistant: ",  # Prompts
-                    "temperature": 0.1,
-                    "top_p": 0.9,
-                    "max_length": 350,
-                    "repetition_penalty": 1
-                }  # Model parameters
-            )
-            full_response = ""
-
-            for item in output:
-                full_response += item
-
-            print(full_response)
-            col.write(f"Ai Response: {full_response}")
-
            
 
 
