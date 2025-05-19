@@ -1,6 +1,7 @@
-![App Screenshot](thumbnail.png)
 
 # 🌱 Agro Analytica: Intelligent Crop Recommendation System
+![App Screenshot](thumbnail.png)
+
 
 A machine learning-based web application that helps farmers determine the most suitable crop to grow based on various soil and environmental parameters.
 
