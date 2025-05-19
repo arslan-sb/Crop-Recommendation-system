@@ -4,8 +4,11 @@ import numpy as np
 import os
 import pickle
 import warnings
-from openai import OpenAI
-client = OpenAI()
+# from openai import OpenAI
+import openai
+openai.api_key = 'sk-proj-1234567890'
+
+client = openai.OpenAI()    
 import requests
 
 
